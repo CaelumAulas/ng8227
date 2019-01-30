@@ -1,0 +1,20 @@
+<header class="jumbotron">
+  <h1 class="text-center">{{titulo}}</h1>
+</header>
+<main class="container">
+
+  <div class="row">
+    <div class="col-12">
+      <a routerLink="/cadastro" class="btn btn-primary">Nova foto</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <cp-card *ngFor="let foto of listaFotos" class="col-4" [fotoObjeto]="foto">
+
+      <cp-foto [url]="foto.url" [titulo]="foto.titulo" estilos="card-img-top"></cp-foto>
+
+    </cp-card>
+
+  </div>
+</main>
