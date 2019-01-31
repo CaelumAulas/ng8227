@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Foto } from 'src/app/models/foto';
+import { FotoService } from 'src/app/services/foto.service';
 
 @Component({
   selector: 'cp-cadastro',
@@ -13,17 +13,14 @@ export class CadastroComponent implements OnInit {
   foto = new Foto();
   mensagem = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private servico: FotoService) {}
 
   ngOnInit() {}
 
   salvar(formCadastro: NgForm){
 
-    this.http
-        .post(
-          'http://localhost:3000/v1/fotos',
-          this.foto
-        )
+    this.servico
+        .cadastrar(this.foto)
         .subscribe(
           () => {
             this.mensagem = `Foto ${this.foto.titulo} cadastrada com sucesso!!`;

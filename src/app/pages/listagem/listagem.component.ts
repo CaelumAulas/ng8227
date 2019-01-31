@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { FotoService } from 'src/app/services/foto.service';
+import { Foto } from 'src/app/models/foto';
 
 @Component({
   selector: 'cp-listagem',
@@ -9,20 +10,40 @@ import { HttpClient } from '@angular/common/http';
 export class ListagemComponent implements OnInit {
 
   titulo = 'CaelumPic';
-  listaFotos;
+  listaFotos: Foto[] = [];
 
-  constructor(http: HttpClient) {
-    http
-      .get('http://localhost:3000/v1/fotos/')
-      .subscribe(
-        fotosApi => {
-          this.listaFotos = fotosApi;
-        }
-        , erro => console.log(erro)
-      )
+  constructor(private servico: FotoService) {}
+
+  ngOnInit() {
+    this.servico
+        .listar()
+        .subscribe(
+          fotosApi => {
+            this.listaFotos = fotosApi;
+          }
+          , erro => console.log(erro)
+        )
 
   }
 
-  ngOnInit() {}
+  apagar(fotoId){
+    this.servico
+        .deletar(fotoId)
+        .subscribe(
+          () => {
+            console.log('apagouuuu '+fotoId);
+
+           this.listaFotos = this
+                                .listaFotos
+                                .filter(
+                                  foto => {
+                                    if(foto._id != fotoId){
+                                      return foto
+                                    }
+                                })
+
+          }
+        )//fim subscribe
+  }
 
 }

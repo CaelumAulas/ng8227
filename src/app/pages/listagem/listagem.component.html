@@ -11,9 +11,8 @@
 
   <div class="row">
     <cp-card *ngFor="let foto of listaFotos" class="col-4" [fotoObjeto]="foto">
-
       <cp-foto [url]="foto.url" [titulo]="foto.titulo" estilos="card-img-top"></cp-foto>
-
+      <button (click)="apagar(foto._id)" class="btn btn-danger">Apagar</button>
     </cp-card>
 
   </div>
