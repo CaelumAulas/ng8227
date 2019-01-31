@@ -2,23 +2,41 @@
   <h1 class="text-center">Cadastro</h1>
 </header>
 <main class="container">
+
+  <div class="row" *ngIf="mensagem">
+    <div class="col-sm-7">
+      <p class="alert alert-success">
+        {{mensagem}}
+      </p>
+    </div>
+  </div>
+
   <div class="row">
-    <form #formCadastro="ngForm" (ngSubmit)="salvar()" class="col-sm-7 mb-4">
+    <form #formCadastro="ngForm" (ngSubmit)="salvar(formCadastro)" class="col-sm-7 mb-4">
 
       <div class="form-group">
         <label for="">Titulo*</label>
         <input
+          #titulo="ngModel"
           [(ngModel)]="foto.titulo"
           name="titulo"
           required type="text" class="form-control">
+          <p *ngIf="titulo.invalid && titulo.touched" class="alert alert-danger">
+            Um titulo deve ser informado
+          </p>
+
       </div>
 
       <div class="form-group">
         <label for="">URL*</label>
         <input
+          #url="ngModel"
           [(ngModel)]="foto.url"
           name="url"
           required type="text" class="form-control">
+        <div *ngIf="url.invalid && url.touched" class="alert alert-danger" role="alert">
+          Informar uma URL é obrigatório
+        </div>
       </div>
 
       <div class="form-group">
