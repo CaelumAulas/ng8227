@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Foto } from 'src/app/models/foto';
 import { FotoService } from 'src/app/services/foto.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,6 +12,16 @@ export class CadastroComponent implements OnInit {
 
   foto = new Foto();
   mensagem = '';
+
+  titulo = new FormControl('', [Validators.required, Validators.minLength(5)]);
+
+  url = new FormControl('', Validators.required);
+
+  formCadastro = new FormGroup({
+    titulo: this.titulo,
+    url: this.url,
+    descricao: new FormControl('')
+  })
 
   constructor(private servico: FotoService,
               private rotaAtiva: ActivatedRoute,

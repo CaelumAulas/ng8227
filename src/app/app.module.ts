@@ -7,7 +7,7 @@ import { CaelumpicComponentsModule } from './components/caelumpic-components.mod
 import { ListagemComponent } from './pages/listagem/listagem.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { ModuloRoteamento } from './app.routes';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FiltroPorTituloPipe } from './pages/listagem/filtro-por-titulo.pipe';
 
 @NgModule({
@@ -22,7 +22,8 @@ import { FiltroPorTituloPipe } from './pages/listagem/filtro-por-titulo.pipe';
     HttpClientModule,
     CaelumpicComponentsModule,
     ModuloRoteamento,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

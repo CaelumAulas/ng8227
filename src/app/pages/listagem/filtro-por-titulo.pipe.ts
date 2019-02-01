@@ -8,7 +8,8 @@ export class FiltroPorTituloPipe implements PipeTransform{
 
     transform(listaDeFotos: Foto[], termoFiltro: string){
 
-      return listaDeFotos.filter(foto => foto.titulo.toLowerCase().includes(termoFiltro.toLowerCase()))
+      return listaDeFotos = listaDeFotos.filter(foto => foto.titulo.toLowerCase().includes(termoFiltro.toLowerCase()))
+
     }
 
 }
