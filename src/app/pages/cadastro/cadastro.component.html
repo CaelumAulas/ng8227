@@ -51,7 +51,14 @@
     </form>
     <aside class="col-sm-5">
       <h2>Preview</h2>
-
+      <cp-card [fotoObjeto]="foto">
+        <cp-foto
+          [url]="foto.url"
+          [titulo]="foto.titulo"
+          estilos="card-img-top"
+          class="foto">
+        </cp-foto>
+      </cp-card>
 
     </aside>
   </div>

@@ -26,21 +26,14 @@ export class ListagemComponent implements OnInit {
 
   }
 
-  apagar(fotoId){
+  apagar(foto: Foto){
     this.servico
-        .deletar(fotoId)
+        .deletar(foto._id)
         .subscribe(
           () => {
-            console.log('apagouuuu '+fotoId);
 
-           this.listaFotos = this
-                                .listaFotos
-                                .filter(
-                                  foto => {
-                                    if(foto._id != fotoId){
-                                      return foto
-                                    }
-                                })
+           let indiceDaFotoApagada = this.listaFotos.indexOf(foto)
+           this.listaFotos.splice(indiceDaFotoApagada, 1)
 
           }
         )//fim subscribe

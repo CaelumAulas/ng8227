@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Foto } from '../models/foto';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,21 +13,24 @@ export class FotoService {
 
   constructor(private http: HttpClient){}
 
-  listar(){
-    return this.http.get(this.url)
+  listar(): Observable<Foto[]> {
+    return this.http.get<Foto[]>(this.url)
   }
 
-  cadastrar(foto: Foto){
+  cadastrar(foto: Foto): Observable<Object> {
     return this.http.post(this.url,foto)
   }
 
-  deletar(fotoId: string){
+  deletar(fotoId: string): Observable<Object> {
     return this.http.delete(this.url+fotoId)
   }
 
-  editar(){}
+  buscar(fotoId: string): Observable<Foto> {
+    return this.http.get<Foto>(this.url+fotoId)
+  }
 
-  buscar(){}
-
+  editar(foto: Foto): Observable<Object> {
+    return this.http.put(this.url+foto._id, foto)
+  }
 
 }
