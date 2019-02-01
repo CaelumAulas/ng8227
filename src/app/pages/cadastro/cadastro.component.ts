@@ -48,6 +48,8 @@ export class CadastroComponent implements OnInit {
           )
     }
     else {
+      console.log('salvar');
+
       this.servico
           .cadastrar(this.foto)
           .subscribe(

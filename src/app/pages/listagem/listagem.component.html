@@ -4,13 +4,16 @@
 <main class="container">
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 mb-4">
       <a routerLink="/cadastro" class="btn btn-primary">Nova foto</a>
     </div>
+    <form class="col-12 mb-4">
+      <input (input)="true" #inputBusca type="search" name="busca" id="busca" class="form-control">
+    </form>
   </div>
 
   <div class="row">
-    <cp-card *ngFor="let foto of listaFotos" class="col-4" [fotoObjeto]="foto">
+    <cp-card *ngFor="let foto of listaFotos | filtroPorTitulo:inputBusca.value" class="col-4" [fotoObjeto]="foto">
       <a [routerLink]="['editar',foto._id]" class="foto">
         <cp-foto [url]="foto.url" [titulo]="foto.titulo" estilos="card-img-top"></cp-foto>
       </a>

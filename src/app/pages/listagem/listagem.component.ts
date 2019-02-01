@@ -11,6 +11,7 @@ export class ListagemComponent implements OnInit {
 
   titulo = 'CaelumPic';
   listaFotos: Foto[] = [];
+  data = new Date();
 
   constructor(private servico: FotoService) {}
 

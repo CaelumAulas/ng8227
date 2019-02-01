@@ -8,12 +8,14 @@ import { ListagemComponent } from './pages/listagem/listagem.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { ModuloRoteamento } from './app.routes';
 import { FormsModule } from "@angular/forms";
+import { FiltroPorTituloPipe } from './pages/listagem/filtro-por-titulo.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListagemComponent,
-    CadastroComponent
+    CadastroComponent,
+    FiltroPorTituloPipe
   ],
   imports: [
     BrowserModule,
