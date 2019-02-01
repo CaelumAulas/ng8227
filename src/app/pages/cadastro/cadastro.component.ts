@@ -33,13 +33,18 @@ export class CadastroComponent implements OnInit {
       this.servico
           .buscar(fotoId)
           .subscribe(
-            fotoApi => this.foto = fotoApi
+            fotoApi => {
+              this.foto = fotoApi;
+              this.formCadastro.patchValue(fotoApi);
+            }
             , erro => console.log(erro)
           )
     }
   }
 
-  salvar(formCadastro: NgForm){
+  salvar(){
+
+    this.foto = {...this.foto, ...this.formCadastro.value}
 
     if(this.foto._id){
       this.servico
@@ -58,14 +63,12 @@ export class CadastroComponent implements OnInit {
           )
     }
     else {
-      console.log('salvar');
-
       this.servico
           .cadastrar(this.foto)
           .subscribe(
             () => {
               this.mensagem = `Foto ${this.foto.titulo} cadastrada com sucesso!!`;
-              formCadastro.reset()
+              this.formCadastro.reset()
               this.foto = new Foto();
 
               setTimeout(() => {
